@@ -1,86 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:text="C1"
+        android:textSize="50dp"
+        android:background="#ff9966"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+         />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="#ff0000"
-            android:orientation="horizontal">
+    <Button
+        android:id="@+id/button17"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:text="B1"
+        android:textSize="50dp"
+        android:background="#ff0000"
+        android:gravity="center"
+        android:layout_below="@+id/checkBox"
+        android:layout_toRightOf="@+id/checkBox"
+         />
 
-            <Button
-                android:id="@+id/button15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="1" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:text="T1"
+        android:textSize="50dp"
+        android:background="#66ffcc"
+        android:gravity="center"
+        android:layout_below="@+id/button17"
+        android:layout_toLeftOf="@+id/button17"
+         />
 
-            <Button
-                android:id="@+id/button14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="2" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:text="T2"
+        android:textSize="50dp"
+        android:background="#cc00ff"
+        android:gravity="center"
+        android:layout_below="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+         />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="#ffff00"
-                android:orientation="vertical"></LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#aaaa00"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/button6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="3" />
-
-                <Button
-                    android:id="@+id/button7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="4" />
-
-                <Button
-                    android:id="@+id/button8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="5" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@color/black"
-        android:orientation="horizontal"></LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
