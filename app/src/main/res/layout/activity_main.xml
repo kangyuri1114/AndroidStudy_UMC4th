@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <CheckBox
+    <Button
         android:id="@+id/checkBox"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:text="C1"
-        android:textSize="50dp"
+        android:text="B1"
+        android:textSize="30dp"
         android:background="#ff9966"
         android:gravity="center"
         android:layout_centerInParent="true"
@@ -20,8 +20,8 @@
         android:id="@+id/button17"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:text="B1"
-        android:textSize="50dp"
+        android:text="B2"
+        android:textSize="30dp"
         android:background="#ff0000"
         android:gravity="center"
         android:layout_below="@+id/checkBox"
