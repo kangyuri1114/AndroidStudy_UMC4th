@@ -1,55 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:measureAllChildren="false"
+    android:background="@color/black"
+    android:foreground="@mipmap/ic_launcher"
+    android:foregroundGravity="center|bottom"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/checkBox"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:text="B1"
-        android:textSize="30dp"
-        android:backgroundTint="#ff0000"
-        android:gravity="center"
-        android:layout_centerInParent="true"
-         />
-
-    <Button
-        android:id="@+id/button17"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:text="B2"
-        android:textSize="30dp"
-        android:backgroundTint="#aa0000"
-        android:gravity="center"
-        android:layout_below="@+id/checkBox"
-        android:layout_toRightOf="@+id/checkBox"
-         />
+    <TextView
+        android:layout_width="420dp"
+        android:layout_height="540dp"
+        android:text="Text View 1"
+        android:textSize="24dp"
+        android:background="#FFAB40" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:text="T1"
-        android:textSize="50dp"
-        android:background="#66ffcc"
-        android:gravity="center"
-        android:layout_below="@+id/button17"
-        android:layout_toLeftOf="@+id/button17"
-         />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:text="T2"
-        android:textSize="50dp"
-        android:background="#cc00ff"
-        android:gravity="center"
-        android:layout_below="@+id/textView2"
-        android:layout_toRightOf="@+id/textView2"
-         />
-
-</RelativeLayout>
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:text="Text View 2"
+        android:textSize="24dp"
+        android:layout_gravity="center"
+        android:background="#FFFF00" />
+</FrameLayout>
