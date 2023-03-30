@@ -1,27 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:measureAllChildren="false"
-    android:background="@color/black"
-    android:foreground="@mipmap/ic_launcher"
-    android:foregroundGravity="center|bottom"
-    tools:context=".MainActivity">
+    android:Shrinkcolumn="0,1,2,3,4"
+    tools:context=".MainActivity"
+    tools:ignore="ExtraText">
 
-    <TextView
-        android:layout_width="420dp"
-        android:layout_height="540dp"
-        android:text="Text View 1"
-        android:textSize="24dp"
-        android:background="#FFAB40" />
 
-    <TextView
-        android:layout_width="240dp"
-        android:layout_height="240dp"
-        android:text="Text View 2"
-        android:textSize="24dp"
-        android:layout_gravity="center"
-        android:background="#FFFF00" />
-</FrameLayout>
+   <TableRow>
+       <TextView
+           android:layout_height="wrap_content"
+           android:layout_width="wrap_content"
+           android:text="(0,0)"
+           android:textSize="40dp"
+           android:layout_margin="10dp"
+           />
+
+
+       <TextView
+           android:layout_height="wrap_content"
+           android:layout_width="wrap_content"
+           android:text="(0,1)"
+           android:textSize="40dp"
+           android:layout_margin="10dp"
+           />
+
+       <TextView
+           android:layout_height="wrap_content"
+           android:layout_width="wrap_content"
+           android:text="(0,2)"
+           android:textSize="40dp"
+           android:layout_margin="10dp"
+           />
+
+       <TextView
+           android:layout_height="wrap_content"
+           android:layout_width="wrap_content"
+           android:text="(0,3)"
+           android:textSize="40dp"
+           android:layout_margin="10dp"
+           />
+
+   </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="(1,0)"
+            android:textSize="40dp"
+            android:layout_margin="10dp"
+            />
+
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="(1,1)"
+            android:textSize="40dp"
+            android:layout_margin="10dp"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="(1,2)"
+            android:textSize="40dp"
+            android:layout_margin="10dp"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="(1,3)"
+            android:textSize="40dp"
+            android:layout_margin="10dp"
+            />
+
+    </TableRow>
+
+
+</TableLayout>
