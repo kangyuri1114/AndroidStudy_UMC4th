@@ -11,9 +11,23 @@ class SubsubActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.finish.setOnClickListener { finish() }
+        viewA()
 
+        binding.btnSwitch.setOnClickListener { viewA() }
+        binding.btnRemove.setOnClickListener { viewB() }
+        binding.btnBack.setOnClickListener { finish() }
     }
 
-
+    private fun viewA() {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.frameLayout, AFragment())
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+    private fun viewB() {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.frameLayout, BFragment())
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
 }
