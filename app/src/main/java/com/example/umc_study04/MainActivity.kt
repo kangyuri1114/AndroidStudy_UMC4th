@@ -1,11 +1,13 @@
 package com.example.umc_study04
 
+import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.umc_study04.databinding.ActivityMainBinding
 
+var data: String? = ""
 class MainActivity : AppCompatActivity() {
 
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -14,47 +16,55 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        //생명주기 예제
-        Toast.makeText(this, "onCreate 호출 됨", Toast.LENGTH_LONG).show()
-        Log.d("LifeCycle", "onCreate")
+        binding.editButton.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            val text = binding.editText.text.toString()
+            intent.putExtra("Memo", text)
+            startActivity(intent)
+        }
     }
     override fun onStart() {
         super.onStart()
-        Toast.makeText(this, "onStart 호출 됨", Toast.LENGTH_LONG).show()
-        Log.d("LifeCycle", "onStart")
+
     }
     override fun onResume() {
         super.onResume()
-        Toast.makeText(this, "onResume 호출 됨", Toast.LENGTH_LONG).show()
-        Log.d("LifeCycle", "onResume")
 
     }
 
     override fun onPause() {
         super.onPause()
-        Toast.makeText(this, "onPause 호출 됨", Toast.LENGTH_LONG).show()
-        Log.d("LifeCycle", "onPause")
 
+        data = binding.editText.text.toString()
     }
 
     override fun onStop() {
         super.onStop()
-        Toast.makeText(this, "onStop 호출 됨", Toast.LENGTH_LONG).show()
-        Log.d("LifeCycle", "onStop")
 
     }
 
+    /**
+     * Dialog 작성
+     * */
     override fun onRestart() {
         super.onRestart()
-        Toast.makeText(this, "onRestart 호출 됨", Toast.LENGTH_LONG).show()
-        Log.d("LifeCycle", "onRestart")
 
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("재작성 묻기")
+        builder.setMessage("Memo 다시 작성하겠습니까?")
+        builder.apply{
+            setPositiveButton("OK", DialogInterface.OnClickListener{ dialog, id -> })
+            setNegativeButton("Cancelled", DialogInterface.OnClickListener{
+                    dialog, id -> binding.editText.setText(null) })
+
+        }
+
+        builder.create()
+        builder.show()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Toast.makeText(this, "onDestroy 호출 됨", Toast.LENGTH_LONG).show()
-        Log.d("LifeCycle", "onDestroy")
 
     }
 }

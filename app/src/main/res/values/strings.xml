@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">UMC_study04</string>
+    <string name="memo">Memo</string>
+    <string name="button">Button</string>
+    <string name="Input_txt">메모를 입력하세요</string>
+    <string name="btn_input">메모 입력하기</string>
+    <string name="textview">TextView</string>
 </resources>
