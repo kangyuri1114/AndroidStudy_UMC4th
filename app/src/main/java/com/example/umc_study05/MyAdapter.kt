@@ -18,7 +18,14 @@ import com.example.umc_study05.databinding.ActivityMemoBinding
  *
  * */
 
-class MyAdapter(private val listData: ArrayList<Member>, val onClickDeleteBtn: (data: Member) -> Unit): RecyclerView.Adapter<DataViewHolder>() {
+class MyAdapter(private val listData: ArrayList<Member>, val onClickDeleteBtn: (data: Member) -> Unit): RecyclerView.Adapter<MyAdapter.DataViewHolder>() {
+
+    //viewHolder 객체 생성
+    inner class DataViewHolder(val binding: ActivityMemoBinding) : RecyclerView.ViewHolder(binding.root){
+        fun bind(member: Member){
+            binding.tvMemo.text = member.Memo
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
         val binding = ActivityMemoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -26,17 +33,12 @@ class MyAdapter(private val listData: ArrayList<Member>, val onClickDeleteBtn: (
     }
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        val member = listData[position]
-        holder.setData(member)
+        val listposition = listData[position]
+        holder.bind(listposition)
 
-        holder.binding.delete.setOnClickListener { onClickDeleteBtn.invoke(member) }
+        holder.binding.delete.setOnClickListener { onClickDeleteBtn.invoke(listposition) }
     }
 
     override fun getItemCount(): Int = listData.size
 }
 
-class DataViewHolder(val binding: ActivityMemoBinding) : RecyclerView.ViewHolder(binding.root){
-    fun setData(member: Member){
-        binding.tvMemo.text = member.Memo
-    }
-}

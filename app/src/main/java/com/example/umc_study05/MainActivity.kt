@@ -1,5 +1,6 @@
 package com.example.umc_study05
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val RecyclerViewAdapter = MyAdapter(listData, onClickDeleteBtn = { deleteTask(it)})
+        val myAdapter = MyAdapter(listData, onClickDeleteBtn = { deleteTask(it)})
 
         /**
          * Activity 간 데이터 주고 받는 registerForActivityResult
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                      * - notifyItemRangeInserted : 연속된 여러 개의 아이템 내용 변경 시
                      * - notifyDataSetChanged :리스트의 크기와 아이템 둘 다 변경 시
                      * */
-                    RecyclerViewAdapter.notifyItemRangeInserted(listData.size,1)
+                    myAdapter.notifyItemRangeInserted(listData.size,1)
                 }
             }
 
@@ -44,11 +45,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, MemoActivity::class.java)
             getResultText.launch(intent)
         }
-        binding.RV.adapter = RecyclerViewAdapter
+        binding.RV.adapter = myAdapter
         binding.RV.layoutManager = LinearLayoutManager(this)
 
-        }
+    }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun deleteTask(data: Member) {
         listData.remove(data)
         binding.RV.adapter?.notifyDataSetChanged()
