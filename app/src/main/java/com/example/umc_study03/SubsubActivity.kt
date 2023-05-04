@@ -6,7 +6,6 @@ import com.example.umc_study03.databinding.ActivitySubsubBinding
 
 class SubsubActivity : AppCompatActivity() {
     private val binding:ActivitySubsubBinding by lazy {ActivitySubsubBinding.inflate(layoutInflater)}
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -16,6 +15,14 @@ class SubsubActivity : AppCompatActivity() {
         binding.btnSwitch.setOnClickListener { viewA() }
         binding.btnRemove.setOnClickListener { viewB() }
         binding.btnBack.setOnClickListener { finish() }
+
+        /**
+         *supportFragmentManager
+        .setFragmentResultListener("requestKey", this) { requestKey, bundle ->
+        val result = bundle.getString("bundleKey")
+        }
+         * */
+
     }
 
     private fun viewA() {

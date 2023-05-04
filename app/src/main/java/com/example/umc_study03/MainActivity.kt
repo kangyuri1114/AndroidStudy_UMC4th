@@ -48,5 +48,7 @@ class MainActivity : AppCompatActivity() {
             val intent3 = Intent(this@MainActivity, SubActivity::class.java)
             getResultText.launch(intent3)
         }
+
+
     }
 }

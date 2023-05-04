@@ -8,6 +8,9 @@
     <string name="toast">Toast</string>
     <string name="finish">finish</string>
     <string name="throw3">throw3</string>
+    <string name="fragmenta">FragmentA</string>
+    <string name="edittext">EditText</string>
+    <string name="SendData">전송하기</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>
