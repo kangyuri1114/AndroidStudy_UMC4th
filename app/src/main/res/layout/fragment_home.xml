@@ -10,7 +10,8 @@
         android:layout_height="match_parent"
         android:text="@string/home_view"
         android:textSize="50sp"
-        android:gravity="center"
-        android:background="@color/black"/>
+        android:gravity="center">
+
+    </TextView>
 
 </FrameLayout>
