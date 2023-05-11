@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import com.example.umc_study06.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+
     private val fragmentCamera by lazy { CameraFragment() }
     private val fragmentHome by lazy { HomeFragment() }
     private val fragmentPlant by lazy { PlantFragment() }
@@ -13,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater)}
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
         initNavigationBar()
     }
@@ -42,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     private fun changeFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.frameLayout, fragment)
+            .replace(R.id.fl_container, fragment)
             .commit()
     }
 }
