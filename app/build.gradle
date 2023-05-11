@@ -4,6 +4,11 @@ plugins {
 }
 
 android {
+
+    viewBinding {
+        enabled = true
+    }
+
     namespace 'com.example.umc_study06'
     compileSdk 33
 
