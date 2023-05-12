@@ -9,9 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 
+
 class HomeFragment : Fragment() {
 
     private var viewPager: ViewPager2? = null
+    //private val binding: FragmentHomeBinding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -19,10 +21,6 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view:View = inflater.inflate(R.layout.fragment_home, container, false)
         viewPager = view.findViewById(R.id.pager)
-        return view
-    }
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
 
         val pagerAdapter = PagerFragmentStateAdapter(requireActivity())
 
@@ -38,5 +36,7 @@ class HomeFragment : Fragment() {
                 Log.e("ViewPagerFragment", "Page ${position+1}")
             }
         })
+
+        return view
     }
 }
