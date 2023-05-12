@@ -8,4 +8,14 @@
     <string name="camera">Camera</string>
     <string name="home">Home</string>
     <string name="plant">Plant</string>
+    <string name="tab">Tab</string>
+    <string name="tab1">Tab1</string>
+    <string name="tab2">Tab2</string>
+    <string name="tab3">Tab3</string>
+    <string name="Tab1" />
+    <string name="Tab2">Tab2</string>
+    <string name="Tab3">Tab3</string>
+    <string name="_1">슬라이드 화면 1</string>
+    <string name="_2">슬라이드 화면 2</string>
+    <string name="_3">슬라이드 화면 3</string>
 </resources>

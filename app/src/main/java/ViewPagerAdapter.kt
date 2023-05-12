@@ -12,7 +12,9 @@ class ViewPagerAdapter (fragment : FragmentActivity) : FragmentStateAdapter(frag
         return when (position) {
             0 -> CameraFragment()
             1 -> HomeFragment()
-            else -> PlantFragment()
+            2 -> PlantFragment()
+            else -> throw IllegalArgumentException("Invalid position: $position")
+
         }
     }
 }
