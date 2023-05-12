@@ -1,47 +1,57 @@
 package com.example.umc_study06
 
+import ViewPagerAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.viewpager2.widget.ViewPager2
+import com.example.umc_study06.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-   /* private val fl: FrameLayout by lazy {
-        findViewById(R.id.fl_container)
-    }
-    */
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val mainBnv = findViewById<BottomNavigationView>(R.id.navigationView)
+        binding.pager.adapter = ViewPagerAdapter(this)
 
-        mainBnv.setOnItemSelectedListener { item ->
+        binding.pager.registerOnPageChangeCallback(
+            object : ViewPager2.OnPageChangeCallback() {
+
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    binding.navigationView.menu.getItem(position).isChecked = true
+                }
+            }
+        )
+
+        binding.navigationView.setOnItemSelectedListener { item ->
             changeFragment(
                 when (item.itemId) {
                     R.id.navigation_Camera -> {
-                        mainBnv.itemIconTintList = ContextCompat.getColorStateList(this, R.color.purple_500)
-                        mainBnv.itemTextColor = ContextCompat.getColorStateList(this, R.color.purple_500)
-                        HomeFragment()
-                    }
-                    R.id.navigation_Home -> {
-                        mainBnv.itemIconTintList = ContextCompat.getColorStateList(this, R.color.teal_700)
-                        mainBnv.itemTextColor = ContextCompat.getColorStateList(this, R.color.teal_700)
+                        binding.navigationView.itemIconTintList = ContextCompat.getColorStateList(this, R.color.purple_500)
+                        binding.navigationView.itemTextColor = ContextCompat.getColorStateList(this, R.color.purple_500)
                         CameraFragment()
                     }
+                    R.id.navigation_Home -> {
+                        binding.navigationView.itemIconTintList = ContextCompat.getColorStateList(this, R.color.teal_700)
+                        binding.navigationView.itemTextColor = ContextCompat.getColorStateList(this, R.color.teal_700)
+                        HomeFragment()
+                    }
                     else -> {
-                        mainBnv.itemIconTintList = ContextCompat.getColorStateList(this, R.color.teal_200)
-                        mainBnv.itemTextColor = ContextCompat.getColorStateList(this, R.color.teal_200)
+                        binding.navigationView.itemIconTintList = ContextCompat.getColorStateList(this, R.color.teal_200)
+                        binding.navigationView.itemTextColor = ContextCompat.getColorStateList(this, R.color.teal_200)
                         PlantFragment()
                     }
                 }
             )
             true
         }
-        mainBnv.selectedItemId = R.id.navigation_Home
+        binding.navigationView.selectedItemId = R.id.navigation_Home
     }
 
     private fun changeFragment(fragment: Fragment) {
