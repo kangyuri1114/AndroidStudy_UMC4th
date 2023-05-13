@@ -1,11 +1,9 @@
 package com.example.umc_study06
 
-import ViewPagerAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
 import com.example.umc_study06.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,20 +14,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        binding.pager.adapter = ViewPagerAdapter(this)
-//
-//        binding.pager.registerOnPageChangeCallback(
-//            object : ViewPager2.OnPageChangeCallback() {
-//
-//                override fun onPageSelected(position: Int) {
-//                    super.onPageSelected(position)
-//                    binding.navigationView.menu.getItem(position).isChecked = true
-//
-//
-//                }
-//            }
-//        )
 
         binding.navigationView.setOnItemSelectedListener { item ->
             changeFragment(
