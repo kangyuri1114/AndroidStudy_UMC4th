@@ -14,10 +14,10 @@ class MemoActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.store.setOnClickListener {
+        binding.btnStore.setOnClickListener {
 
             val intent = Intent(this, MainActivity::class.java).apply{
-                putExtra("data", binding.tvMemo.text.toString())
+                putExtra("data", binding.edtTxt.text.toString())
             }
 
             setResult(RESULT_OK, intent)

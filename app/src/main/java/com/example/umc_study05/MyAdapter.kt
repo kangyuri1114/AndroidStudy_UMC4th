@@ -4,7 +4,7 @@ package com.example.umc_study05
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.umc_study05.databinding.ActivityMemoBinding
+import com.example.umc_study05.databinding.ItemBinding
 
 /**
  * RecyclerViewAdapter : Adapter 인자에 데이터를 넣어주면, MainActivity에서 수정하면 자동으로 수정됨
@@ -18,17 +18,19 @@ import com.example.umc_study05.databinding.ActivityMemoBinding
  *
  * */
 
-class MyAdapter(private val listData: ArrayList<Member>, val onClickDeleteBtn: (data: Member) -> Unit): RecyclerView.Adapter<MyAdapter.DataViewHolder>() {
+class MyAdapter(private val listData: ArrayList<Member>,
+                val onClickDeleteBtn: (data: Member) -> Unit)
+    : RecyclerView.Adapter<MyAdapter.DataViewHolder>() {
 
     //viewHolder 객체 생성
-    inner class DataViewHolder(val binding: ActivityMemoBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class DataViewHolder(val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(member: Member){
             binding.tvMemo.text = member.Memo
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
-        val binding = ActivityMemoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return DataViewHolder(binding)
     }
 
@@ -36,7 +38,7 @@ class MyAdapter(private val listData: ArrayList<Member>, val onClickDeleteBtn: (
         val listposition = listData[position]
         holder.bind(listposition)
 
-        holder.binding.delete.setOnClickListener { onClickDeleteBtn.invoke(listposition) }
+        holder.binding.btnDelete.setOnClickListener { onClickDeleteBtn.invoke(listposition) }
     }
 
     override fun getItemCount(): Int = listData.size
