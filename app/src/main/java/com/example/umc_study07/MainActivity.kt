@@ -1,5 +1,6 @@
 package com.example.umc_study07
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
@@ -34,6 +35,9 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btn3.setOnClickListener {
             stopTimer()
+        }
+        binding.btnMusic.setOnClickListener {
+            goMusicPlayer()
         }
     }
 
@@ -76,5 +80,10 @@ class MainActivity : AppCompatActivity() {
         val minute = String.format("%02d", time / 60)
         val second = String.format("%02d", time % 60)
         return "$minute:$second"
+    }
+
+    private fun goMusicPlayer() {
+        val intent = Intent(this, MusicPlayerActivity::class.java)
+        startActivity(intent)
     }
 }
