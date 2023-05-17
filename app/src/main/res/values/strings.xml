@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">UMC_study07</string>
+    <string name="timer">Timer</string>
+    <string name="_00_00">00 : 00</string>
+    <string name="timessetting">타이머 시간 설정</string>
+    <string name="end">종료</string>
+    <string name="musicplayer">MusicPlayer</string>
+    <string name="start">시작</string>
+    <string name="time">00 : 00</string>
+    <string name="pause">일시정지</string>
 </resources>
