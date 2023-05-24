@@ -2,9 +2,10 @@ package com.example.umc_study05
 
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.umc_study05.databinding.ItemBinding
 
 /**
  * RecyclerViewAdapter : Adapter 인자에 데이터를 넣어주면, MainActivity에서 수정하면 자동으로 수정됨
@@ -18,29 +19,30 @@ import com.example.umc_study05.databinding.ItemBinding
  *
  * */
 
-class MyAdapter(private val listData: ArrayList<Member>,
-                val onClickDeleteBtn: (data: Member) -> Unit)
-    : RecyclerView.Adapter<MyAdapter.DataViewHolder>() {
+class MemoAdapter(
+    private val memoList: MutableList<String>,
+    private val onItemClick: (position: Int) -> Unit
+) : RecyclerView.Adapter<MemoAdapter.MemoViewHolder>() {
 
-    //viewHolder 객체 생성
-    inner class DataViewHolder(val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(member: Member){
-            binding.tvMemo.text = member.Memo
+    inner class MemoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val memoTextView: TextView = itemView.findViewById(R.id.memoTextView)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemoViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.memo_item, parent, false)
+        return MemoViewHolder(itemView)
+    }
+
+    override fun onBindViewHolder(holder: MemoViewHolder, position: Int) {
+        val memo = memoList[position]
+        holder.memoTextView.text = memo
+
+        holder.itemView.setOnClickListener {
+            onItemClick(position)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
-        val binding = ItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return DataViewHolder(binding)
+    override fun getItemCount(): Int {
+        return memoList.size
     }
-
-    override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        val listposition = listData[position]
-        holder.bind(listposition)
-
-        holder.binding.btnDelete.setOnClickListener { onClickDeleteBtn.invoke(listposition) }
-    }
-
-    override fun getItemCount(): Int = listData.size
 }
-

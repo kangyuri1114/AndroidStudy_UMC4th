@@ -1,60 +1,49 @@
 package com.example.umc_study05
 
-import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.result.ActivityResultLauncher
+import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.umc_study05.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var memoAdapter: MemoAdapter
+    private lateinit var memoList: MutableList<String>
+    private lateinit var addMemoButton: Button
 
-    private val listData: ArrayList<Member> = arrayListOf()
-
-    private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater)}
-    private lateinit var getResultText: ActivityResultLauncher<Intent>
+    private val addMemoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            val memoText = data?.getStringExtra("memo")
+            if (memoText != null) {
+                memoList.add(memoText)
+                memoAdapter.notifyDataSetChanged()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
-        val myAdapter = MyAdapter(listData, onClickDeleteBtn = { deleteTask(it)})
-
-        /**
-         * Activity 간 데이터 주고 받는 registerForActivityResult
-         **/
-        getResultText =
-            registerForActivityResult (ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == RESULT_OK) {
-                    val mString = result.data?.getStringExtra("Back")
-
-                    listData.apply { add(Member("$mString")) }
-
-                    /**
-                     * RecyclerView 업데이트 방법 중 1
-                     * - notifyItemRangeInserted : 연속된 여러 개의 아이템 내용 변경 시
-                     * - notifyDataSetChanged :리스트의 크기와 아이템 둘 다 변경 시
-                     * */
-                    myAdapter.notifyItemRangeInserted(listData.size,1)
-                }
-            }
-
-        binding.btnAdd.setOnClickListener {
-            val intent = Intent(this@MainActivity, MemoActivity::class.java)
-            getResultText.launch(intent)
+        memoList = mutableListOf()
+        memoAdapter = MemoAdapter(memoList) { position ->
+            memoList.removeAt(position)
+            memoAdapter.notifyDataSetChanged()
         }
-        binding.RV.adapter = myAdapter
-        binding.RV.layoutManager = LinearLayoutManager(this)
 
-    }
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        recyclerView.adapter = memoAdapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun deleteTask(data: Member) {
-        listData.remove(data)
-        binding.RV.adapter?.notifyDataSetChanged()
+        addMemoButton = findViewById(R.id.addMemoButton)
+        addMemoButton.setOnClickListener {
+            val intent = Intent(this, MemoActivity::class.java)
+            addMemoLauncher.launch(intent)
+        }
     }
 }
-
-
