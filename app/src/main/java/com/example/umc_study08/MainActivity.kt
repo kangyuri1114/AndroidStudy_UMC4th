@@ -1,33 +1,49 @@
 package com.example.umc_study08
 
+import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AlertDialog
+import com.example.umc_study08.databinding.ActivityMainBinding
 
+var data: String? = ""
 
 class MainActivity : AppCompatActivity() {
+    private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
-        val roomDb = AppDatabase.getInstance(this)
+        binding.editButton.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            val text = binding.editText.text.toString()
+            intent.putExtra("Memo", text)
+            startActivity(intent)
+        }
+    }
 
-        if(roomDb != null) {
-            //val user = User("Yuri", 23)
-            //val user = User("Riyu", 1)
-            //roomDb.userDao().insert(user)
+    override fun onPause() {
+        super.onPause()
 
-            //업데이트
-            //roomDb.userDao().updateNameByUserId(1,"유리")
+        data = binding.editText.text.toString()
+    }
 
-            //삭제
-            val deleteUser = User("",0,2)
-            roomDb.userDao().delete(deleteUser)
+    override fun onRestart() {
+        super.onRestart()
 
-            val userList = roomDb.userDao().selectAll()
-            Log.d("DB", "User List : ${userList}")
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("재작성 묻기")
+        builder.setMessage("Memo 다시 작성하겠습니까?")
+        builder.apply{
+            setPositiveButton("재작성하기", DialogInterface.OnClickListener{ dialog, id -> })
+            setNegativeButton("처음부터 쓰기", DialogInterface.OnClickListener{
+                    dialog, id -> binding.editText.setText(null) })
 
         }
 
+        builder.create()
+        builder.show()
     }
 }
