@@ -6,24 +6,24 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import com.example.umc_study08.databinding.ActivityMemoBinding
 
 
 class MemoActivity : AppCompatActivity() {
+    private val binding: ActivityMemoBinding by lazy { ActivityMemoBinding.inflate(layoutInflater)}
     private lateinit var memoEditText: EditText
     private lateinit var saveButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_memo)
+        setContentView(binding.root)
 
-        memoEditText = findViewById(R.id.memoEditText)
-        saveButton = findViewById(R.id.saveButton)
-
-        saveButton.setOnClickListener {
+        binding.saveButton.setOnClickListener {
             val memoText = memoEditText.text.toString()
             val intent = Intent().apply {
                 putExtra("memo", memoText)
             }
+            //Activity 실행 결과 설정
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
