@@ -28,9 +28,15 @@ class FavoriteActivity : AppCompatActivity() {
         memoDatabase = MemoDatabase.getInstance(this)
         favoriteList = mutableListOf()
 
-        favoriteAdapter = MemoAdapter(favoriteList, { position: Int ->
+        favoriteAdapter = MemoAdapter(favoriteList, onItemClick = { position ->
             val memo = favoriteList[position]
-        }, this)
+            // Handle item click if needed
+        }, onFavoriteClick = { position ->
+            val memo = favoriteList[position]
+            toggleFavorite(memo)
+        }, onSwitchClick = { position ->
+            // Handle switch click if needed
+        })
 
         binding.recyclerViewFavorite.adapter = favoriteAdapter
         binding.recyclerViewFavorite.layoutManager = LinearLayoutManager(this)
@@ -59,5 +65,12 @@ class FavoriteActivity : AppCompatActivity() {
                 favoriteAdapter.notifyDataSetChanged()
             }
         }
+    }
+    private fun toggleFavorite(memo: Memo) {
+        val isFavorite = sharedPreferences.getBoolean("favorite_${memo.id}", false)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("favorite_${memo.id}", !isFavorite)
+        editor.apply()
+        loadFavorites(memoList)
     }
 }

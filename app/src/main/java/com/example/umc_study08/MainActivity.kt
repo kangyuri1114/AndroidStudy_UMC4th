@@ -12,7 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private lateinit var memoAdapter: MemoAdapter
@@ -41,7 +40,11 @@ class MainActivity : AppCompatActivity() {
         memoList = mutableListOf()
         memoAdapter = MemoAdapter(memoList, onItemClick =  { position ->
             deleteMemo(position)
-        }, context = this)
+        }, onFavoriteClick = { position ->
+            toggleFavorite(position)
+        }, onSwitchClick = { position ->
+            toggleFinished(position)
+        })
 
         binding.recyclerView.adapter = memoAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
@@ -51,10 +54,6 @@ class MainActivity : AppCompatActivity() {
             addMemoLauncher.launch(intent)
         }
 
-        binding.goFavorite.setOnClickListener {
-            val intent = Intent(this, FavoriteActivity::class.java)
-            startActivity(intent)
-        }
         loadMemos()
     }
 
@@ -63,6 +62,30 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
             memoDatabase.memoDao().deleteMemo(memo)
             loadMemos()
+        }
+    }
+
+    private fun toggleFavorite(position: Int) {
+        val memo = memoList[position]
+        val isFavorite = !memo.isFavorite
+        lifecycleScope.launch(Dispatchers.IO) {
+            memo.isFavorite = isFavorite
+            memoDatabase.memoDao().updateMemo(memo)
+            withContext(Dispatchers.Main) {
+                memoAdapter.notifyDataSetChanged()
+            }
+        }
+    }
+
+    private fun toggleFinished(position: Int) {
+        val memo = memoList[position]
+        val isFinished = !memo.isFinished
+        lifecycleScope.launch(Dispatchers.IO) {
+            memo.isFinished = isFinished
+            memoDatabase.memoDao().updateMemo(memo)
+            withContext(Dispatchers.Main) {
+                memoAdapter.notifyDataSetChanged()
+            }
         }
     }
 
