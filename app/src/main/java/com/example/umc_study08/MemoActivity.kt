@@ -11,15 +11,13 @@ import com.example.umc_study08.databinding.ActivityMemoBinding
 
 class MemoActivity : AppCompatActivity() {
     private val binding: ActivityMemoBinding by lazy { ActivityMemoBinding.inflate(layoutInflater)}
-    private lateinit var memoEditText: EditText
-    private lateinit var saveButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         binding.saveButton.setOnClickListener {
-            val memoText = memoEditText.text.toString()
+            val memoText = binding.memoEditText.text.toString()
             val intent = Intent().apply {
                 putExtra("memo", memoText)
             }
