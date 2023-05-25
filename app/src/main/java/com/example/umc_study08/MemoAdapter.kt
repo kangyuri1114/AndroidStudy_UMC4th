@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
  * */
 
 class MemoAdapter(
-    private val memoList: MutableList<String>,
+    private val memoList: MutableList<Memo>,
     private val onItemClick: (position: Int) -> Unit
 ) : RecyclerView.Adapter<MemoAdapter.MemoViewHolder>() {
 
@@ -34,7 +34,7 @@ class MemoAdapter(
 
     override fun onBindViewHolder(holder: MemoViewHolder, position: Int) {
         val memo = memoList[position]
-        holder.memoTextView.text = memo
+        holder.memoTextView.text = memo.content
 
         holder.itemView.setOnClickListener {
             onItemClick(position)
