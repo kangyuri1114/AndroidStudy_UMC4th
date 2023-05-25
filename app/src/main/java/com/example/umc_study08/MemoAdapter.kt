@@ -1,9 +1,11 @@
 package com.example.umc_study08
 
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 /**
@@ -20,11 +22,13 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MemoAdapter(
     private val memoList: MutableList<Memo>,
-    private val onItemClick: (position: Int) -> Unit
+    private val onItemClick: (position: Int) -> Unit,
+    private val context: Context
 ) : RecyclerView.Adapter<MemoAdapter.MemoViewHolder>() {
 
     inner class MemoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val memoTextView: TextView = itemView.findViewById(R.id.memoTextView)
+        val btnStar: Button = itemView.findViewById(R.id.btn_favorite)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemoViewHolder {
@@ -39,9 +43,21 @@ class MemoAdapter(
         holder.itemView.setOnClickListener {
             onItemClick(position)
         }
+        holder.btnStar.setOnClickListener {
+            memo.isFavorite = !memo.isFavorite
+            saveFavoriteState(memo.id, memo.isFavorite)
+            notifyItemChanged(position)
+        }
     }
 
     override fun getItemCount(): Int {
         return memoList.size
+    }
+
+    private fun saveFavoriteState(memoId: Long, isFavorite: Boolean) {
+        val sharedPreferences = context.getSharedPreferences("memo_preferences", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("favorite_$memoId", isFavorite)
+        editor.apply()
     }
 }

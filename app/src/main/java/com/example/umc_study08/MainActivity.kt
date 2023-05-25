@@ -39,9 +39,9 @@ class MainActivity : AppCompatActivity() {
 
         memoDatabase = MemoDatabase.getInstance(this)
         memoList = mutableListOf()
-        memoAdapter = MemoAdapter(memoList) { position ->
+        memoAdapter = MemoAdapter(memoList, onItemClick =  { position ->
             deleteMemo(position)
-        }
+        }, context = this)
 
         binding.recyclerView.adapter = memoAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
@@ -51,6 +51,10 @@ class MainActivity : AppCompatActivity() {
             addMemoLauncher.launch(intent)
         }
 
+        binding.goFavorite.setOnClickListener {
+            val intent = Intent(this, FavoriteActivity::class.java)
+            startActivity(intent)
+        }
         loadMemos()
     }
 

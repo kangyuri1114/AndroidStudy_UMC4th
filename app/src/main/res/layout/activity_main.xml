@@ -6,8 +6,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="610dp" />
 
     <Button
         android:id="@+id/addMemoButton"
@@ -17,5 +16,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
         android:text="Add Memo" />
+
+    <Button
+        android:id="@+id/go_favorite"
+        android:layout_width="64dp"
+        android:layout_height="71dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:padding="8dp"
+        android:text="" />
 
 </RelativeLayout>

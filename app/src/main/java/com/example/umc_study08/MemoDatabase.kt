@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [Memo::class], version = 3) // 변경: 버전 3로 업데이트
+@Database(entities = [Memo::class], version = 4)
 abstract class MemoDatabase : RoomDatabase() {
     abstract fun memoDao(): MemoDao
 
@@ -23,18 +23,17 @@ abstract class MemoDatabase : RoomDatabase() {
                         MemoDatabase::class.java,
                         "app-database"
                     )
-                        .addMigrations(MIGRATION_2_3) // 마이그레이션 설정 추가
+                        .addMigrations(MIGRATION_3_4)
                         .build()
                 }
             }
             return memoDatabase!!
         }
 
-        // 2 버전에서 3 버전으로의 마이그레이션 정의
-        private val MIGRATION_2_3: Migration = object : Migration(2, 3) {
+        private val MIGRATION_3_4: Migration = object : Migration(3, 4) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                // 마이그레이션 로직 작성
-                // 예시: 테이블 변경 등
+// memo_table 테이블의 스키마 변경 작업 수행
+                database.execSQL("ALTER TABLE memo_table ADD COLUMN isFavorite INTEGER NOT NULL DEFAULT 0")
             }
         }
     }
