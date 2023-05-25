@@ -1,6 +1,7 @@
 package com.example.umc_study08
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -54,6 +55,11 @@ class MainActivity : AppCompatActivity() {
             addMemoLauncher.launch(intent)
         }
 
+        binding.goFavorite.setOnClickListener {
+            val intent = Intent(this, FavoriteActivity::class.java)
+            startActivity(intent)
+        }
+
         loadMemos()
     }
 
@@ -73,6 +79,12 @@ class MainActivity : AppCompatActivity() {
             memoDatabase.memoDao().updateMemo(memo)
             withContext(Dispatchers.Main) {
                 memoAdapter.notifyDataSetChanged()
+                if (isFavorite) {
+                    val sharedPrefs = getSharedPreferences("memo_preferences", Context.MODE_PRIVATE)
+                    val editor = sharedPrefs.edit()
+                    editor.putBoolean("favorite_${memo.id}", true)
+                    editor.apply()
+                }
             }
         }
     }

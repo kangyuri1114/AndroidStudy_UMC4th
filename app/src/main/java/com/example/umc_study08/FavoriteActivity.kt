@@ -30,12 +30,13 @@ class FavoriteActivity : AppCompatActivity() {
 
         favoriteAdapter = MemoAdapter(favoriteList, onItemClick = { position ->
             val memo = favoriteList[position]
-            // Handle item click if needed
+            // 클릭한 메모에 대한 처리 작성
         }, onFavoriteClick = { position ->
             val memo = favoriteList[position]
             toggleFavorite(memo)
         }, onSwitchClick = { position ->
-            // Handle switch click if needed
+            val memo = favoriteList[position]
+            toggleSwitch(memo)
         })
 
         binding.recyclerViewFavorite.adapter = favoriteAdapter
@@ -55,7 +56,8 @@ class FavoriteActivity : AppCompatActivity() {
 
         lifecycleScope.launch(Dispatchers.IO) {
             for (memo in memoList) {
-                val isFavorite = sharedPreferences.getBoolean("favorite_${memo.id}", false)
+                val sharedPrefs = getSharedPreferences("memo_preferences", Context.MODE_PRIVATE)
+                val isFavorite = sharedPrefs.getBoolean("favorite_${memo.id}", false)
                 if (isFavorite) {
                     favoriteList.add(memo)
                 }
@@ -66,11 +68,22 @@ class FavoriteActivity : AppCompatActivity() {
             }
         }
     }
+
+
     private fun toggleFavorite(memo: Memo) {
         val isFavorite = sharedPreferences.getBoolean("favorite_${memo.id}", false)
         val editor = sharedPreferences.edit()
         editor.putBoolean("favorite_${memo.id}", !isFavorite)
         editor.apply()
         loadFavorites(memoList)
+    }
+
+    private fun toggleSwitch(memo: Memo) {
+        val isFinished = memo.isFinished
+        memo.isFinished = !isFinished
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            memoDatabase.memoDao().updateMemo(memo)
+        }
     }
 }
