@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="kakao"
+        android:text="@string/kakao"
         android:textColor="@color/black"
-        android:textSize="30dp"
+        android:textSize="30sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,7 @@
         android:layout_marginTop="20dp"
         android:ems="15"
         android:inputType="textEmailAddress"
-        android:text="카카오계정(이메일 또는 전화번호)"
+        android:text="@string/email"
         android:textSize="18sp"
         android:textColor="#7A7979"
         android:height="48dp"
@@ -39,15 +39,17 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/kakao"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.04"
+        android:autofillHints="email"
+        android:labelFor="@id/Email"/>
 
     <EditText
         android:id="@+id/editTextTextPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="15"
-        android:inputType="text"
-        android:text="비밀번호"
+        android:inputType="textPassword"
+        android:text="@string/password"
         android:textSize="18sp"
         android:textColor="#7A7979"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,7 +57,9 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Email"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:autofillHints="password"/>
+
 
     <Button
         android:id="@+id/button"
@@ -63,7 +67,7 @@
         android:layout_height="55dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="#FFEB3B"
-        android:text="로그인"
+        android:text="@string/login"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="15"
-            android:text="회원가입"
+            android:text="@string/In"
             android:textColor="@color/black" />
 
         <TextView
@@ -98,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="카카오 계정"
+            android:text="@string/info"
             android:textColor="@color/black" />
 
         <TextView
@@ -106,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="비밀번호 찾기"
+            android:text="@string/find_pw"
             android:textColor="@color/black" />
     </LinearLayout>
 
@@ -114,7 +118,7 @@
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="로그인 상태 유지"
+        android:text="@string/cb_login"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
