@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">UMC_study02</string>
+    <string name="Input">Input</string>
+    <string name="kakao">kakao</string>
+    <string name="email">카카오계정(이메일 또는 전화번호)</string>
+    <string name="password">비밀번호</string>
+    <string name="login">로그인</string>
+    <string name="In">회원가입</string>
+    <string name="info">카카오 계정</string>
+    <string name="find_pw">비밀번호 찾기</string>
+    <string name="cb_login">로그인 상태 유지</string>
+    <string name="ch">채널명</string>
+    <string name="video">동영상 제목</string>
+    <string name="Info">채널명, 조회수, 업로드 일시</string>
+    <string name="edit">편집</string>
+    <string name="alarm" />
+    <string name="tx_alarm">알람</string>
+    <string name="_08_00">08:00</string>
+    <string name="plus">+</string>
+
+</resources>
