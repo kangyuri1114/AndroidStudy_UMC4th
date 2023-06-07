@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:Shrinkcolumn="0,1,2,3,4"
+    tools:context=".MainActivity"
+    tools:ignore="ExtraText">
+
+
+    <TableRow>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/_0_0"
+            android:textSize="40sp"
+            android:layout_margin="10dp"
+            />
+
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/_0_1"
+            android:textSize="40sp"
+            android:layout_margin="10dp"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/_0_2"
+            android:textSize="40sp"
+            android:layout_margin="10dp"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/_0_3"
+            android:textSize="40sp"
+            android:layout_margin="10dp"
+            />
+
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/_1_0"
+            android:textSize="40sp"
+            android:layout_margin="10dp"
+            />
+
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/_1_1"
+            android:textSize="40sp"
+            android:layout_margin="10dp"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/_1_2"
+            android:textSize="40sp"
+            android:layout_margin="10dp"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/_1_3"
+            android:textSize="40sp"
+            android:layout_margin="10dp"
+            />
+
+    </TableRow>
+
+
+</TableLayout>
