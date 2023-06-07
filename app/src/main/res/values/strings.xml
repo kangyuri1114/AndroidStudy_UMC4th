@@ -11,6 +11,14 @@
     <string name="fragmenta">FragmentA</string>
     <string name="edittext">EditText</string>
     <string name="SendData">전송하기</string>
+    <string name="btn_1">Sun Activity에 데이터 전송하기</string>
+    <string name="btn_2">Main으로 돌아왔을 때 값 Toast 메시지</string>
+    <string name="btn_3">Sub Activity로 이동</string>
+    <string name="data">받아온 값</string>
+    <string name="tv_close">Sub Activity 종료</string>
+    <string name="tv_goThird">Third Activity로 이동</string>
+    <string name="end_sub_activity">Sub Activity 종료</string>
+    <string name="goThird">Third Activity로 이동</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>
