@@ -53,8 +53,8 @@ class MainActivity : AppCompatActivity() {
         builder.setTitle("재작성 묻기")
         builder.setMessage("Memo 다시 작성하겠습니까?")
         builder.apply{
-            setPositiveButton("OK", DialogInterface.OnClickListener{ dialog, id -> })
-            setNegativeButton("Cancelled", DialogInterface.OnClickListener{
+            setPositiveButton("재작성", DialogInterface.OnClickListener{ dialog, id -> })
+            setNegativeButton("아니오", DialogInterface.OnClickListener{
                     dialog, id -> binding.editText.setText(null) })
 
         }
