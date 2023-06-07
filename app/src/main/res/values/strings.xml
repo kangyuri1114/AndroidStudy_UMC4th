@@ -7,4 +7,9 @@
     <string name="textview">TextView</string>
     <string name="Delete">delete</string>
     <string name="edit">edit</string>
+    <string name="on_off">ON/OFF</string>
+    <string name="switch_item_title">switch item title</string>
+    <string name="save">Save</string>
+    <string name="memo_infp">메모를 입력하세요.</string>
+    <string name="todo_list">Todo List</string>
 </resources>
